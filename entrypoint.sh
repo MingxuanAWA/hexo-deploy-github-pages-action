@@ -50,6 +50,8 @@ ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 
 echo ">>> Config git ..."
 
+git clone "git@github.com:${TARGET_REPOSITORY}" .deploy_git
+
 # Configures Git.
 git config --global user.name "MingxuanAWA"
 git config --global user.email "mxgame@foxmail.com"
