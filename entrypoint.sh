@@ -69,6 +69,10 @@ echo '>>> Start Commit ...'
 git add .
 git commit --allow-empty -m "Deploy to ${TARGET_REPOSITORY}"
 
+echo '>>> Change remote'
+git remote remove origin
+git remote add origin "${REPOSITORY_PATH}"
+
 echo '>>> Start Push ...'
 git push -u origin "${TARGET_BRANCH}" --force
 
