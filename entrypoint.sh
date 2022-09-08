@@ -58,7 +58,7 @@ git clone ${REPOSITORY_PATH} repo
 
 # Copy files
 echo '>>> Copy file ...'
-cp -rf "${TARGET_PUBLISH_DIR}/*" repo
+cp -rf ${TARGET_PUBLISH_DIR}/* repo
 
 # Push
 cd repo
