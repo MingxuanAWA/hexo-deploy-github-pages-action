@@ -63,17 +63,13 @@ cp -rf ${TARGET_PUBLISH_DIR}/* repo
 # Push
 cd repo
 git config user.name "github-actions[bot]"
-git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git config user.email "github-actions[bot]@users.noreply.github.com"
 
 echo '>>> Start Commit ...'
 git add .
 git commit --allow-empty -m "Deploy to ${TARGET_REPOSITORY}"
 
-echo '>>> Change remote'
-git remote remove origin
-git remote add origin "${REPOSITORY_PATH}"
-
 echo '>>> Start Push ...'
-git push -u origin "${TARGET_BRANCH}" --force
+git push -u origin "${REPOSITORY_PATH}" --force
 
 echo ">>> Deployment successful!"
