@@ -42,8 +42,6 @@ npx hexo clean
 echo ">>> Generate file ..."
 npx hexo generate
 
-cd $TARGET_PUBLISH_DIR
-
 echo ">>> Setup ssh-private-key"
 mkdir -p /root/.ssh/
 echo "$DEPLOY_KEY" > /root/.ssh/id_rsa
