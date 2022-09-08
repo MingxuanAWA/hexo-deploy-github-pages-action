@@ -22,14 +22,6 @@ else
     TARGET_PUBLISH_DIR="./public"
 fi
 
-if [ -z "$PERSONAL_TOKEN" ]
-then
-  echo "You must provide the action with either a Personal Access Token or the GitHub Token secret in order to deploy."
-  exit 1
-fi
-
-REPOSITORY_PATH="https://x-access-token:${PERSONAL_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
-
 # deploy to
 echo ">>>>> Start deploy to ${TARGET_REPOSITORY} <<<<<"
 
@@ -50,28 +42,21 @@ npx hexo clean
 echo ">>> Generate file ..."
 npx hexo generate
 
+cd $TARGET_PUBLISH_DIR
+
+echo ">>> Setup ssh-private-key"
+mkdir -p /root/.ssh/
+echo "$DEPLOY_KEY" > /root/.ssh/id_rsa
+chmod 600 /root/.ssh/id_rsa
+ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
+
 echo ">>> Config git ..."
 
-# Clone repo.
-echo '>>> Start Clone ...'
-git clone ${REPOSITORY_PATH} repo
-
-# Copy files
-echo '>>> Copy file ...'
-cp -rf ${TARGET_PUBLISH_DIR}/* repo
-
-# Push
-cd repo
-# git config user.name "github-actions[bot]"
-# git config user.email "github-actions[bot]@users.noreply.github.com"
-git config user.name "${GITHUB_ACTOR}"
-git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-
-echo '>>> Start Commit ...'
-git add .
-git commit --allow-empty -m "Deploy to ${TARGET_REPOSITORY}"
+# Configures Git.
+git config user.name --global "MingxuanAWA"
+git config user.email --global "mxgame@foxmail.com"
 
 echo '>>> Start Push ...'
-git push origin "${TARGET_BRANCH}" --force
+npx hexo deploy -m "Deploy to ${TARGET_REPOSITORY}"
 
 echo ">>> Deployment successful!"
