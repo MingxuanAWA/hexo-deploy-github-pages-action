@@ -56,8 +56,8 @@ echo ">>> Config git ..."
 
 # Configures Git.
 git init
-git config user.name "${GITHUB_ACTOR}"
-git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+git config user.name "${GITHUB_REPOSITEORY_OWNER}"
+git config user.email "${GITHUB_REPOSITEORY_OWNER}@users.noreply.github.com"
 git remote add origin "${REPOSITORY_PATH}"
 
 git checkout --orphan $TARGET_BRANCH
@@ -65,7 +65,7 @@ git checkout --orphan $TARGET_BRANCH
 git add .
 
 echo '>>> Start Commit ...'
-git commit --allow-empty -m "Building and deploying Hexo project from Github Action"
+git commit --allow-empty -m "${GITHUB_EVENT_HEAD_COMMIT_MESSAGE}"
 
 echo '>>> Start Push ...'
 git push -u origin "${TARGET_BRANCH}" --force
