@@ -70,6 +70,6 @@ git add .
 git commit --allow-empty -m "Deploy to ${TARGET_REPOSITORY}"
 
 echo '>>> Start Push ...'
-git push -u origin "${REPOSITORY_PATH}" --force
+git push origin "${TARGET_BRANCH}" --force
 
 echo ">>> Deployment successful!"
