@@ -62,8 +62,10 @@ cp -rf ${TARGET_PUBLISH_DIR}/* repo
 
 # Push
 cd repo
-git config user.name "github-actions[bot]"
-git config user.email "github-actions[bot]@users.noreply.github.com"
+# git config user.name "github-actions[bot]"
+# git config user.email "github-actions[bot]@users.noreply.github.com"
+git config user.name "${GITHUB_ACTOR}"
+git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
 echo '>>> Start Commit ...'
 git add .
