@@ -56,8 +56,8 @@ echo ">>> Config git ..."
 
 # Configures Git.
 git init
-git config user.name "${GITHUB_REPOSITEORY_OWNER}"
-git config user.email "${GITHUB_REPOSITEORY_OWNER}@users.noreply.github.com"
+git config user.name "github-actions[bot]"
+git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 git remote add origin "${REPOSITORY_PATH}"
 
 git checkout --orphan $TARGET_BRANCH
@@ -65,7 +65,7 @@ git checkout --orphan $TARGET_BRANCH
 git add .
 
 echo '>>> Start Commit ...'
-git commit --allow-empty -m "${GITHUB_EVENT_HEAD_COMMIT_MESSAGE}"
+git commit --allow-empty -m "Deploy to ${REPOSITORY_PATH}"
 
 echo '>>> Start Push ...'
 git push -u origin "${TARGET_BRANCH}" --force
