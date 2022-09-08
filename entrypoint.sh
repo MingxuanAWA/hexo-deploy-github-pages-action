@@ -53,8 +53,8 @@ ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 echo ">>> Config git ..."
 
 # Configures Git.
-git config user.name --global "MingxuanAWA"
-git config user.email --global "mxgame@foxmail.com"
+git config --global user.name "MingxuanAWA"
+git config --global user.email "mxgame@foxmail.com"
 
 echo '>>> Start Push ...'
 npx hexo deploy -m "Deploy to ${TARGET_REPOSITORY}"
