@@ -15,8 +15,9 @@ npm install
 npx hexo clean
 npx hexo generate
 git clone git@github.com:MingxuanAWA/blog repo
-cp -rf ./public/* repo
 cd repo
+git rm -r .
+cp -rf ../public/* repo
 git config user.name "MingxuanAWA"
 git config user.email "mxgame@foxmail.com"
 git add .
