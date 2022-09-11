@@ -17,7 +17,7 @@ npx hexo generate
 git clone git@github.com:MingxuanAWA/blog repo
 cd repo
 git rm -r .
-cp -rf ../public/* repo
+cp -rf ../public/* .
 git config user.name "MingxuanAWA"
 git config user.email "mxgame@foxmail.com"
 git add .
